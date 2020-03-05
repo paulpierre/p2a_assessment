@@ -7,11 +7,19 @@ from flask import Flask, render_template, request, Response, jsonify
 
 app = Flask(__name__)
 
+
+# Credentials
+# -----------
+
 ADMIN_LOGIN = 'admin@action2phone.com'
 ADMIN_PASSWORD = 'letmeinfancybear'
 
 TWILIO_SID = '#####################'
 TWILIO_TOKEN = '#####################'
+
+
+# MD5 Hash setup
+# --------------
 
 m = hashlib.md5()
 m.update(bytes(ADMIN_LOGIN, encoding='utf-8') + bytes(ADMIN_PASSWORD, encoding='utf-8'))
@@ -19,13 +27,23 @@ LOGIN_HASH = m.hexdigest()
 
 print(f'login hash: {LOGIN_HASH}')
 
+# Path to SQLite3 DB
+# ------------------
+
 DB_FILE = 'db/p2a_db.sqlite'
 
+
+
+# Default page
+# ------------
 
 @app.route('/', methods=['GET'])
 def home_page():
     return render_template('home.html')
 
+
+# Admin authentication end-point
+# ------------------------------
 
 @app.route('/authenticate', methods=['POST'])
 def authenticate():
@@ -47,6 +65,10 @@ def authenticate():
     else:
         print('User NOT authenticated')
         return jsonify({'response': 0})
+
+
+# Form submission end-point
+# -------------------------
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -79,6 +101,9 @@ def submit():
         return jsonify({'response': 0})
 
 
+# SMS page
+# --------
+
 @app.route('/dashboard/<user_hash>', methods=['GET', 'POST'])
 def dashboard(user_hash):
 
@@ -99,6 +124,10 @@ def dashboard(user_hash):
         return render_template('dashboard.html', user_list=user_list)
     else:
         return Response(status=403)
+
+
+# SMS end-point
+# -------------
 
 @app.route('/sms', methods=['POST'])
 def sms():
@@ -132,6 +161,11 @@ def sms():
 
     print('SMS was sent successfully!')
     return jsonify({'response': 1})
+
+
+
+# Main
+# ----
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=31337, debug=True)
