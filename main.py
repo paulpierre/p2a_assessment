@@ -7,6 +7,9 @@ from flask import Flask, render_template, request, Response, jsonify
 
 app = Flask(__name__)
 
+# ===========
+# GLOBAL VARS
+# ===========
 
 # Credentials
 # -----------
@@ -33,6 +36,9 @@ print(f'login hash: {LOGIN_HASH}')
 DB_FILE = 'db/p2a_db.sqlite'
 
 
+# ======
+# ROUTES
+# ======
 
 # Default page
 # ------------
@@ -47,21 +53,27 @@ def home_page():
 
 @app.route('/authenticate', methods=['POST'])
 def authenticate():
+
+    # Grab username and password from HTTP request
     user_login = request.form.get('user_name')
     user_password = request.form.get('user_password')
 
     print(f'Received data: {json.dumps(request.form)}')
     print(f'user_login: {user_login} user_password: {user_password}')
-    m = hashlib.md5()
 
+    # Lets setup the MD5 hash and make sure we encode the strings
+    m = hashlib.md5()
     m.update(bytes(user_login, encoding='utf-8') + bytes(user_password, encoding='utf-8'))
     user_hash = m.hexdigest()
 
     print(f'user hash: {user_hash}')
 
+    # If the hashes match let them in and give them the unique URL
     if user_hash == LOGIN_HASH:
         print('user authenticated!')
         return jsonify({'response': 1, 'url': f'/dashboard/{user_hash}'})
+
+    # If it does not, they suck
     else:
         print('User NOT authenticated')
         return jsonify({'response': 0})
@@ -73,30 +85,37 @@ def authenticate():
 @app.route('/submit', methods=['POST'])
 def submit():
 
+    # Lets setup the variables from the HTTP rrequest
     user_first_name = request.form.get('user_first_name')
     user_last_name = request.form.get('user_last_name')
     user_email = request.form.get('user_email')
     user_phone = request.form.get('user_phone')
 
-
-
     print(f'Received data: {json.dumps(request.form)}')
 
+    # If they provided the requisite data to insert ..
     if user_first_name and user_last_name and user_email and user_phone:
 
+        # Lets get the current time in the format that we like
         user_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-        # lets add this to the database
+        # Lets setup the database connection and cursor
         conn = sqlite3.connect(DB_FILE)
         c = conn.cursor()
 
+        # Normally we'd use an ORM, but we're tight on time
         c.execute(f'''
             INSERT INTO users (user_first_name, user_last_name, user_email, user_phone_number, user_date) VALUES('{user_first_name}','{user_last_name}','{user_email}','{user_phone}','{user_date}');
         ''')
+
+        # Commit the data and close the database connection
         conn.commit()
         conn.close()
 
+        # Respond with success
         return jsonify({'response': 1})
+
+    # Or they suck
     else:
         return jsonify({'response': 0})
 
@@ -107,11 +126,20 @@ def submit():
 @app.route('/dashboard/<user_hash>', methods=['GET', 'POST'])
 def dashboard(user_hash):
 
+    # Lets check again that this is a valid hash based on the credentials above
     if user_hash == LOGIN_HASH:
+
+        # Lets intialize a connection to the DB
         conn = sqlite3.connect(DB_FILE)
         c = conn.cursor()
+
+        # We create the array
         user_list = list()
+
+        # Next we iterate over the results
         for row in conn.execute("SELECT * FROM users"):
+
+            # And we append it to the array
             user_list.append({
                 'user_id':row[0],
                 'user_first_name':row[1],
@@ -120,9 +148,15 @@ def dashboard(user_hash):
                 'user_phone': row[4],
                 'user_date': row[5]
             })
+
+        # We close the database and return the list (array) to our template for it to process
         conn.close()
+
+        # Display the template
         return render_template('dashboard.html', user_list=user_list)
     else:
+
+        # They suck
         return Response(status=403)
 
 
@@ -131,22 +165,30 @@ def dashboard(user_hash):
 
 @app.route('/sms', methods=['POST'])
 def sms():
+
+    # Lets grab the JSON data from the HTTP request
     data = request.get_json()
 
+    # If they've brought nothing to the table.. then they suck
     if not data:
         return jsonify({'response': 0})
 
     print(f'Received {json.dumps(data,indent=4)}')
 
+    # Lets get fancy and use a tidy yet confusing list comprehension. This breaks apart
+    # the query string and puts the phone numbers in an indexed array so we may iterate over it later
     user_list = [i.split('=')[1] for i in data['users'].split('&')]
+
+    # Lets set the message
     message = data['message']
-    user_list.append('+17033036520')
+
     print(f'sending "{message}" to numbers: {json.dumps(user_list,indent=4)}')
 
     try:
         # Lets authenticate
         client = Client(TWILIO_SID, TWILIO_TOKEN)
 
+        # Lets go through each phone number and send a message in Twilio
         for phone_number in user_list:
             print(f'sending "{message}" to {phone_number}')
             message = client.messages.create(
@@ -156,9 +198,11 @@ def sms():
             print(message.sid)
 
     except:
+        # Maybe we or they suck, who knows
         print('There was an error sending SMS')
         return jsonify({'response': 0})
 
+    # Hopefully we did something right and you got the SMS. I know I did :)
     print('SMS was sent successfully!')
     return jsonify({'response': 1})
 
