@@ -1,5 +1,5 @@
 # Action2Phone
-*"A service only a fellow comrade could love"*
+*"A service only a fellow comrade could love"* -FSB
 
 This is the technical assesment for Phone2Action. Please note the work product of this assignment is a parody and no malice is intended. Hopefully you have a sense of humor.
 
@@ -46,6 +46,7 @@ Given additional time, obvious stand out things to address:
 * Deeper integration w/ Twilio and error handling
 * Leverage cloud infra (Kubernetes)
 * Place credentials and settings in ENV VARS
+* Writing some unit tests in pytest and maybe pyppeteer for JS
 * Funnier text
 
 ## Database
