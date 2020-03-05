@@ -36,6 +36,11 @@ $(document).ready(function(){
 
             console.log('Response:');
             console.log(data)
+            if(data.response == 1) {
+            alert('Thank you for doing your part!')
+            } else {
+                alert('There was an error submitting your information.')
+            }
         });
     });
 

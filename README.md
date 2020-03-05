@@ -19,6 +19,11 @@ If you need to re-install packages:
 
 `pip install -r requirements.txt`
 
+To launch it:
+`python3 main.py`
+
+App accessible via: http://0.0.0.0:31337/
+
 ## Architecture
 Given the limited amount of time the following was used:
 * Python3
