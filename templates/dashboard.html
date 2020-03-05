@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Action2Phone - Dashboard</title>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="@paulpierre">
+    <link rel="icon" href="/static/favicon.png" type="image/gif" sizes="20x20">
+    <link rel="stylesheet" href="/static/css/main.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+<body class="bg-light">
+    <div class="jumbotron2 col-md-12" style="height:50px;padding-top:10px; margin-top:0;">
+
+        <div class="header col-md-6" style="margin: 0 auto;">
+        <a href="/">
+            <img src="/static/img/logo_main.png" id="site-logo"/>
+        </a>
+        <span id="top-menu">
+          <a href="#">мы служим Путину</a>
+          <a href="#">товары</a>
+          <a href="#">сказки</a>
+          <a href="#">товарищи</a>
+          <a href="/" id="toggle-login">Logout</a>
+
+        </span>
+      </div>
+      <div class="col-md-6" style="margin: 0 auto;">
+      <h1 class="display-5">Welcome back Comrade! Here are our our loyal eyes</h1>
+      </div>
+    </div>
+    <div class="container">
+    <div class="row">
+      <div class="col-md-12 order-md-1">
+        <form id="user-sms">
+          <table class="table">
+          <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email address</th>
+                <th scope="col">Phone number</th>
+                <th scope="col">Registered</th>
+
+            </tr>
+          </thead>
+          <tbody>
+          {% for user in user_list %}
+            <tr>
+                <td><input type="checkbox" name="user_id" value="{{user.user_phone}}"/></td>
+                <td>{{user.user_id}}</td>
+                <td>{{user.user_first_name}}</td>
+                <td>{{user.user_last_name}}</td>
+                <td>{{user.user_email}}</td>
+                <td>{{user.user_phone}}</td>
+                <td>{{user.user_date}}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </form>
+      <div><label>SMS body:</label></div>
+      <input type="text" placeholder="Greetings from a cosy Siberian nook! Help me?" id="message" value="Greetings from a cosy Siberian nook! Help me?" style="width:500px;height:45px;"></input>
+      <a class="btn btn-primary btn-lg" href="#" role="button" style="background-color:#ca066d;border:none;margin-top:0px;" id="btnSMS">Send message</a>
+
+      </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2020 Action2Phone. Made with ☭ Moscow, Russia</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="/static/js/main.js"></script>
+
+</body>
+</html>

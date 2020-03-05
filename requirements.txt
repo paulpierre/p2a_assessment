@@ -1,0 +1,8 @@
+Flask
+Werkzeug
+requests
+pytz
+gunicorn
+peewee
+jinja2
+twilio

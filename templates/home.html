@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Action2Phone</title>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="@paulpierre">
+    <link rel="icon" href="/static/favicon.png" type="image/gif" sizes="20x20">
+    <link rel="stylesheet" href="/static/css/main.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+<body class="bg-light">
+    <div class="jumbotron col-md-12" style="height:50px;padding-top:10px; margin-top:0;">
+
+        <div class="header col-md-6" style="margin: 0 auto;">
+        <a href="/">
+            <img src="/static/img/logo_main.png" id="site-logo"/>
+        </a>
+        <span id="top-menu">
+          <a href="#">мы служим Путину</a>
+          <a href="#">товары</a>
+          <a href="#">сказки</a>
+          <a href="#">товарищи</a>
+          <a href="#" id="toggle-login">Login</a>
+
+        </span>
+      </div>
+      <div class="col-md-6" style="margin: 0 auto;">
+          <div id="login-panel" style="display:none;">
+          <h3>Authenticate yourself!</h3>
+           <form id="login" class="needs-validation" novalidate>
+              <div class="row" style="padding-top:25px;">
+                <div class="col-md-5 mb-3">
+                  <label for="userName">Username</label>
+                  <input type="text" class="form-control" id="userName" name="user_name" placeholder="" value="admin@action2phone.com" required>
+                  <div class="invalid-feedback val-username">
+                    Please provide a valid username
+                  </div>
+                </div>
+                <div class="col-md-5 mb-3">
+                  <label for="userPassword">Password</label>
+                  <input type="password" class="form-control" id="userPassword" name="user_password" placeholder="" value="letmeinfancybear" required>
+                  <div class="invalid-feedback val-password">
+                   Please provide a valid password
+                  </div>
+                </div>
+                <div class="col-md-1 mb-1">
+                  <a class="btn btn-primary btn-lg" href="#" role="button" style="background-color:#ca066d;border:none;margin-top:27px;" id="btnLogin">Login</a>
+                </div>
+              </div>
+           </form>
+        </div>
+
+      <h1 class="display-4">Technology for the Comrades and the State and Surveillance Advocacy</h1>
+        <hr class="my-4">
+
+        <p class="lead text-center">Recruit fellow comrades. Become the eyes for the state. Influence the people.</p>
+        <p class="lead text-center">
+          <a class="btn btn-primary btn-lg" href="#" role="button" style="background-color:#ca066d;border:none;">Learn more</a>
+        </p>
+
+      </div>
+    </div>
+    <div class="container">
+
+
+    <div class="row">
+
+      <div class="col-md-12 order-md-1">
+        <h4 class="mb-3">Comrade's Information</h4>
+        <form id="registration" class="needs-validation" novalidate>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="firstName">First name</label>
+              <input type="text" class="form-control" id="firstName" name="user_first_name" placeholder="" value="Vladimir" required>
+              <div class="invalid-feedback val-fn">
+                Valid first name is required.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="lastName">Last name</label>
+              <input type="text" class="form-control" id="lastName" name="user_last_name" placeholder="" value="Urov" required>
+              <div class="invalid-feedback val-ln">
+                Valid last name is required.
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="mb-3">
+            <label for="email">Email </label>
+            <input type="email" class="form-control" id="email" name="user_email" value="vladdydaddy@yandex.ru" placeholder="you@example.com">
+            <div class="invalid-feedback val-email">
+              Please enter a valid email address.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="phone">Phone number</label>
+            <input type="text" class="form-control" id="phone" name="user_phone" placeholder="7031234567" value="7031234567" required>
+            <div class="invalid-feedback val-phone">
+              Please enter a valid phone number.
+            </div>
+          </div>
+
+
+
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg btn-block" type="submit">In Soviet Russia, Car Drive You</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2020 Action2Phone. Made with ☭ Moscow, Russia</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="/static/js/main.js"></script>
+
+</body>
+</html>

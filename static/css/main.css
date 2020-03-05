@@ -1,0 +1,53 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+}
+
+div.jumbotron {
+    background:url(/static/img/main.jpg) no-repeat center top;
+    background-size: 100%;
+    color: #fff !important;
+    min-height: 600px;
+}
+
+img#site-logo {
+    width:135px;
+}
+
+span#top-menu {
+    padding-left:30px;
+}
+span#top-menu a {
+    color: #fff !important;
+    padding-left:50px;
+}
+
+h1.display-4 {
+    margin-top:100px;
+    font-size:40px;
+    font-family: 'Arial Black';
+    text-align:center;
+}
+
+div.jumbotron2 {
+    background:url(/static/img/main.jpg) no-repeat center top;
+    background-size: 100%;
+    color: #fff !important;
+    min-height: 250px;
+}
+h1.display-5 {
+    margin-top:50px;
+    font-size:40px;
+    font-family: 'Arial Black';
+    text-align:center;
+}
